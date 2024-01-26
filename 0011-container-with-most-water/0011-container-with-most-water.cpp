@@ -7,9 +7,18 @@ public:
         int maxArea = INT_MIN;
         
         while(left<right){
-            maxArea=max(maxArea,(min(height[left],height[right])*(right-left)));
-            if(height[left]<height[right])left++;
-            else right--;
+            
+            int currentArea = min(height[left],height[right])*(right-left);
+            maxArea = max(currentArea,maxArea);
+            
+            if(height[left]<height[right]){
+                left++;
+            }
+            else{
+                right--;
+            }
+            
+        
         }
         return maxArea;
         
