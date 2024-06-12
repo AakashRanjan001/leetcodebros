@@ -15,13 +15,13 @@ public:
             if(balance<0){//matlab aage nhi badh paayenge 
 
             //maine deficit = balance kiya tha dhyan dena yaha par 2nd test case ko dekhna samjh aa kayega 
-              deficit += balance;//jo balance hoga utna hi deficit hoga -ve mei
+              deficit += abs(balance);//jo balance hoga utna hi deficit hoga -ve mei
               start = i+1;//so aage wale index se check akrenge 
               balance =0;//wapsa se balance ko 0 kar denge 
 
             }
         }
-        if(balance+deficit>=0){
+        if(balance>=deficit){
             return start; // janb pura execute ho gya tab check kiye ki balance kitna hai aur bada hai hence circle complete ho jayega 
         }else{
             return -1;
