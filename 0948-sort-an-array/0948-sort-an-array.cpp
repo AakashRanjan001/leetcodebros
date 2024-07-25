@@ -3,15 +3,16 @@ public:
     vector<int> sortArray(vector<int>& nums) {
         int n = nums.size();
 
-        for(int i=0;i<n-1;i++){
-            int minindex = i;
-            for(int j=i+1;j<n;j++){
-                if(nums[j]<nums[minindex]){
-                    minindex = j;
-                }
-            }
-            swap(nums[i],nums[minindex]);
+        priority_queue<int ,vector<int>, greater<int>>minH;
+        //minH is the minimum heap 
+        for(int i=0;i<n;i++){
+            minH.push(nums[i]);
         }
-        return nums;
+        vector<int>ans;
+        for(int i=0;i<n;i++){
+             ans.push_back(minH.top());
+             minH.pop();
+        }
+        return ans;
     }
 };
