@@ -2,7 +2,7 @@ class Solution {
 public:
     int longestValidParentheses(string s) {
         stack<int>st; //we are pushing index so numeric
-        st.push(-1);
+        st.push(-1);  // used for finding length thats why by default pehle hi insert kar diya 
         int maxi = 0;
 
         for(int i=0;i<s.size();i++){
@@ -17,7 +17,8 @@ public:
                   int len = i - st.top();
                   maxi = max(len,maxi);
                }
-               else{  // stack empty hai after we got the closing bracket
+               else {  // stack empty hai after we got the closing bracket
+                
                   st.push(i);
 
                }
