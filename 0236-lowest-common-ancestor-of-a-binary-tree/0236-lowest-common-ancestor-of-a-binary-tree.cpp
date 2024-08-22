@@ -10,37 +10,36 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        
-        //bas ecase 
-        if (root == NULL){
+         //base case 
+         if(root == NULL){
             return NULL;
-        }
+         }
 
-        //1 case solve 
-        if(root->val == p->val){
+        //check for the presence of p and q
+         if(root->val == p->val){
             return p;
-        }
-        if(root->val == q->val){
+         }
+         if(root->val == q->val){
             return q;
-        }
+         }
+         //agar p and q niche hai root ke tab leftpart mei search karo and rightpart mei search karo
 
-          TreeNode* leftans = lowestCommonAncestor(root->left, p,q);
-          TreeNode* rightans = lowestCommonAncestor(root->right, p ,q);
-
-        //4 cases
-         if(leftans == NULL && rightans == NULL){
+         TreeNode* leftpart = lowestCommonAncestor(root->left , p ,q);
+         TreeNode* rightpart = lowestCommonAncestor(root->right , p ,q);
+         if(leftpart == NULL && rightpart == NULL){
             return NULL;
          }
-         else if(leftans !=NULL && rightans == NULL){
-            return leftans;
+         else if(leftpart == NULL && rightpart!=NULL){
+            return rightpart;
          }
-         else if(leftans == NULL && rightans!= NULL){
-            return rightans;
+         else if(leftpart !=NULL && rightpart == NULL){
+            return leftpart;
          }
-        //  else if(leftans!= NULL && rightans!=NULL)
-        else{
-            //if both are not null means we have reached the LCA
+       else{ // leftpart !=NULL && rightpart!=NULL
             return root;
-         }
+       }
+  
+
+
     }
 };
