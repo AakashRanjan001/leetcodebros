@@ -11,33 +11,36 @@
  */
 class Solution {
 public:
-  void solve(TreeNode* root , int tsum , int csum , vector<int>path , vector<vector<int>>&ans ){
-      
-      if(root == NULL){
-        return;
-      }
-      if(root->left == NULL && root->right == NULL){
-           path.push_back(root->val);
-       csum+=root->val;
 
-            if(csum == tsum){
-                ans.push_back(path);
-            }
-            return;
-      }
+    void solve(TreeNode* root , int targetSum , int currSum ,vector<int> path , vector<vector<int>>7ans){
+        cout<< "currSum is"<<currSum<<endl;
+      // base case 
+       if(root == NULL)return;
 
-      // 1 case solve 
-       path.push_back(root->val);
-       csum+=root->val;
+      // means apon leaf node mei hai 
+       if(root->left == NULL && root->right == NULL){
+              path.push_back(root->val);
+               currSum+=root->val;
+           if(currSum == targetSum){
+               ans.push_back(path);
+           }
+           return ;
+       }
+     // 1 case solve kar lo
+      path.push_back(root->val);
+      currSum+=root->val;
 
-       solve(root->left,tsum , csum , path, ans);
-       solve(root->right,tsum , csum , path, ans);
-  }
-    vector<vector<int>> pathSum(TreeNode* root, int tsum) {
-        int csum =0;
+      // check karo ki currSum targetSum ke barabar hai ki nhi agar nhi hai aaage call maar do
+        solve(root->left, targetSum, currSum , path , ans);
+        solve(root->right, targetSum, currSum , path , ans);
+
+
+    }
+    vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
         vector<vector<int>>ans;
         vector<int>temp;
-        solve(root, tsum  ,csum , temp ,ans);
+        int currSum = 0;
+        solve(root , targetSum , currSum, temp ,ans);
         return ans;
     }
 };
