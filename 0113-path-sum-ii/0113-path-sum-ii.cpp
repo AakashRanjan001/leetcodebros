@@ -12,7 +12,7 @@
 class Solution {
 public:
 
-    void solve(TreeNode* root , int targetSum , int currSum ,vector<int> path , vector<vector<int>>7ans){
+    void solve(TreeNode* root , int targetSum , int currSum ,vector<int> path , vector<vector<int>>&ans){
         cout<< "currSum is"<<currSum<<endl;
       // base case 
        if(root == NULL)return;
