@@ -16,11 +16,11 @@ public:
       else{  //closing bracket
       
            if(st.empty()){
-             //closing bracket hai but stack empty hai matlab opening bracket nhi hai
+             //closing bracket hai but stack empty hai matlab opening bracket nhi hai stack mei
              return false;
            }
            
-           if(!st.empty()){
+           if(!st.empty()){  //agar stack empty nhi hai phir apon aage check kiye
             char topelement = st.top();//stack empty nhi hai
             if(topelement == '(' && ch ==')'){
                  //matching mil gy
