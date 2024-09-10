@@ -13,37 +13,40 @@ class Solution {
 public:
     int height(TreeNode* root){
         if(root == NULL){
-            return 0;
+           return 0;
         }
         int leftheight = height(root->left);
         int rightheight = height(root->right);
 
-        int maxi = max(leftheight, rightheight)+1;
-        return maxi;
+        int maxdepth = 1 + max(leftheight, rightheight);
+        return maxdepth;
     }
-  
+    
     bool isBalanced(TreeNode* root) {
-        //balance dekhne ke liye check katrte hai whther the tree diff of the leftpart and the rightpart is less than equla to 1
-        //base case 
+         //base case 1 hi node hai toh pakka ye hoga 
          if(root == NULL){
             return true;
          }
 
-         // 1 case solve kar do
+// 1 case solve kar lo 
          int leftheight = height(root->left);
-         int  rightheight= height(root->right);
-         int diff = abs(leftheight - rightheight);
-           bool ans1 = (diff<=1);
+         int rightheight = height(root->right);
+       int diff = abs(leftheight-rightheight);
+       bool ans1 = (diff<=1);
 
-         bool leftpart =isBalanced(root->left);
-         bool rightpart = isBalanced(root->right);
+   // baaki recursion solve kar leag 
+     bool leftpart = isBalanced(root->left);
+     bool rightpart = isBalanced(root->right);
 
-      if(ans1 &&  leftpart && rightpart){
+     if((ans1 && leftpart && rightpart) == true){
         return true;
-      }
-      else{
+     }
+     else{
         return false;
-      }
+     }
+
+
+         
 
     }
 };
