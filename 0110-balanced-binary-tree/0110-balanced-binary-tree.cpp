@@ -1,3 +1,55 @@
+// /**
+//  * Definition for a binary tree node.
+//  * struct TreeNode {
+//  *     int val;
+//  *     TreeNode *left;
+//  *     TreeNode *right;
+//  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+//  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+//  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+//  * };
+//  */
+// class Solution {
+// public:
+//     int height(TreeNode* root){
+//         if(root == NULL){
+//             return 0;
+//         }
+//         int leftheight = height(root->left);
+//         int rightheight = height(root->right);
+
+//         int maxi = max(leftheight, rightheight)+1;
+//         return maxi;
+//     }
+  
+//     bool isBalanced(TreeNode* root) {
+//         //balance dekhne ke liye check katrte hai whther the tree diff of the leftpart and the rightpart is less than equla to 1
+//         //base case 
+//          if(root == NULL){
+//             return true;
+//          }
+
+//          // 1 case solve kar do
+//          int leftheight = height(root->left);
+//          int  rightheight= height(root->right);
+//          int diff = abs(leftheight - rightheight);
+//            bool ans1 = (diff<=1);
+
+//          bool leftpart =isBalanced(root->left);
+//          bool rightpart = isBalanced(root->right);
+
+//       if(ans1 &&  leftpart && rightpart){
+//         return true;
+//       }
+//       else{
+//         return false;
+//       }
+
+//     }
+// };
+
+
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -11,42 +63,23 @@
  */
 class Solution {
 public:
+    bool isbalanced = true;
     int height(TreeNode* root){
-        if(root == NULL){
-           return 0;
-        }
-        int leftheight = height(root->left);
-        int rightheight = height(root->right);
+        if(root == NULL)return 0;
 
-        int maxdepth = 1 + max(leftheight, rightheight);
-        return maxdepth;
-    }
-    
-    bool isBalanced(TreeNode* root) {
-         //base case 1 hi node hai toh pakka ye hoga 
-         if(root == NULL){
-            return true;
+        int lh = height(root->left);
+        int rh = height(root->right);
+         
+         if(isbalanced && abs(lh - rh)>1){
+            isbalanced = false;
          }
 
-// 1 case solve kar lo 
-         int leftheight = height(root->left);
-         int rightheight = height(root->right);
-       int diff = abs(leftheight-rightheight);
-       bool ans1 = (diff<=1);
+        
+        return max(lh,rh)+1;
 
-   // baaki recursion solve kar leag 
-     bool leftpart = isBalanced(root->left);
-     bool rightpart = isBalanced(root->right);
-
-     if((ans1 && leftpart && rightpart) == true){
-        return true;
-     }
-     else{
-        return false;
-     }
-
-
-         
-
+    }
+    bool isBalanced(TreeNode* root) {
+        height(root);
+        return isbalanced;
     }
 };
