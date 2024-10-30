@@ -11,30 +11,30 @@
  */
 class Solution {
 public:
-    bool solve(TreeNode* root , long long int lb , long long int ub){
-        // basecase
-        if(root == NULL){
-            return true; // matlab tree empty hai toh pakka BST hoga 
-        }
-        if(root->val > lb && root->val < ub){
-            // matlab root ka data range mei hai 
-            // tab apon left aur right ki call maareneg
-            bool leftans = solve(root->left , lb , root->val);
-            bool rightans = solve(root->right , root->val , ub);
-            // agara dono side se tue hua tabhi valid BSt
-            return leftans && rightans;
-        }
-        // agar range mei lie nahi karta hai tab
-        else{
-             return false;
-        }
-
-         
+    bool isSorted(vector<int>&ans){
+           for(int i=0;i<ans.size()-1;i++){
+            if(ans[i]>=ans[i+1]){
+                return false;
+            }
+           }
+           return true;
     }
-    bool isValidBST(TreeNode* root) {
-        long long int lowerbound = -4294967296;
-        long long int upperbound = 4294967296;
 
-       return solve(root, lowerbound,upperbound);
+    void inorderBST(TreeNode* root, vector<int>&ans){
+        if(root == NULL){
+           return;
+        }
+        //LNR
+        inorderBST(root->left,ans);
+        ans.push_back(root->val);
+        inorderBST(root->right,ans);
+
+    }
+
+    bool isValidBST(TreeNode* root) {
+        vector<int>ans;
+        inorderBST(root,ans);
+      
+      return isSorted(ans);
     }
 };
