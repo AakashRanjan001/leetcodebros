@@ -40,18 +40,27 @@ public:
             minheap.pop();
 
             // If head is NULL, set the head and tail of the merged list
-            if (head == NULL) {
+            if (head == NULL) { // tempmay or may not be th efirst element
+
+            // here temp is te first element of the answer LL
                 head = temp;
                 tail = temp;
-            } else {
-                tail->next = temp; // Append to the result list
-                tail = temp;
-            }
-
+                
             // If there is a next node in the list, push it to the heap
             if (temp->next != NULL) {
                 minheap.push(temp->next);
             }
+            } else {
+                // temp is not the first ekememt of teh answer LL
+                tail->next = temp; // Append to the result list
+                tail = temp;
+                
+            // If there is a next node in the list, push it to the heap
+            if (temp->next != NULL) {
+                minheap.push(temp->next);
+            }
+            }
+
         }
 
         return head;
