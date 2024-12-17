@@ -40,14 +40,55 @@ public:
        dp[n][target] = ans;
        return dp[n][target];
    }
+
+   int solveUsingTab(int n , int k, int target){
+   // step 1: create a 2D array
+    vector<vector<int >>dp(n+1 , vector<int >(target+1 ,0));
+
+    //step 2: base case mei dekho 
+    dp[0][0] = 1;
+
+      // to down mei n->0 and target->0
+    //step 3: iterative array  
+    for(int index =1;index<=n;index++){
+         for(int t=1;t<=target;t++){
+               long long int  ans =0;
+     
+     
+       for(int i=1;i<=k;i++){
+        long long int recAns = 0;
+        if(t-i>=0 && index -1>=0)
+           recAns = dp[index-1][t - i];
+           recAns = recAns%MOD;
+           ans = ans%MOD;
+           ans = (ans + recAns)% MOD;      
+       }
+       dp[index][t] = ans;
+     
+         }  
+    }
+  return dp[n][target];
+   }
     int numRollsToTarget(int n, int k, int target) {
         // int ans = solveUsingRec(n,k,target);
         // return ans;
 
         //here also two varuables are changing they are n , target
         //step 1: create a 2D array
-        vector<vector< long long int >>dp(n+1 , vector< long long int >(target+1 ,-1));
-        long long int ans = solveUsingMem(n,k,target,dp);
-        return ans;
+        // vector<vector<int >>dp(n+1 , vector<int >(target+1 ,-1));
+        // long long int ans = solveUsingMem(n,k,target,dp);
+        // return ans;
+
+// tabulation 
+     int ans = solveUsingTab(n,k,target);
+     return ans;
+
+
+
+
     }
+
+
+
+
 };
