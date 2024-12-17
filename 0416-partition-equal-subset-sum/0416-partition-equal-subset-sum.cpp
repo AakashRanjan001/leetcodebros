@@ -34,6 +34,34 @@ public:
          dp[index][target] = (include || exclude);
          return dp[index][target];
     }
+
+    bool solveUsingTab(vector<int>& nums, int target){
+        int n = nums.size();
+         //step 1: create a dp array // all columns initialsed with 0
+         vector<vector<int>>dp(n +1,vector<int>(target+1 , 0));
+
+         //step 2 : base case of top down dekho
+         //return 0 ke liye pehle hi upar inintalsed kar diya hai
+         for(int i=0;i<nums.size();i++){
+             dp[i][0] = 1;  // 0th column ke liye all are 1
+         }
+
+         //step 3: iterative method // in top down : index ----> 0->n-1
+                                                // : target ----> target ->0
+           for(int index=n-1;index>=0;index--){
+               for(int t=1;t<=target;t++){ // jaha jaha target ->t   
+                 bool include =0;                      //laha jaha n -> i
+                if(t-nums[index]>=0){                       
+                   include = dp[index+1][t -nums[index]];
+                }
+                  bool exclude =dp[index+1][t];
+
+                 dp[index][t] = (include || exclude);
+                  
+               }
+           }                                     
+         return dp[0][target];        
+    }
    
     bool canPartition(vector<int>& nums) {
         int n = nums.size();
@@ -58,9 +86,13 @@ public:
         int index =0;
         // index varies from 0->n-1 ---> n rows
          //target varies from target->0 ----> target + 1 cols and initialised with -1
-        vector<vector<int>>dp(n,vector<int>(target+1 , -1));
-        bool ans = solveUsingMem(nums,index , target , dp);
+        // vector<vector<int>>dp(n,vector<int>(target+1 , -1));
+        // bool ans = solveUsingMem(nums,index , target , dp);
 
-        return ans;
+        // return ans;
+
+       bool ans = solveUsingTab(nums,target);
+       return ans;
+        
     }
 };
