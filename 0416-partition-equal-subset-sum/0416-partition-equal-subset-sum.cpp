@@ -76,6 +76,7 @@ public:
 
     // Base case: If target == 0, answer is true (we can always form target 0 with an empty subset)
     next[0] = 1;
+    curr[0] = 1;
 
     // Iterate over indices in reverse
     for (int index = n - 1; index >= 0; index--) {
@@ -88,7 +89,7 @@ public:
 
             curr[t] = include || exclude;
         }
-        // Shift current row to next row
+        // Shift current row to next row // YAHA MAI GALTI KARTA HU
         next = curr;
     }
 
@@ -124,9 +125,11 @@ public:
 
         // return ans;
 
+// TABULATION
     //    bool ans = solveUsingTab(nums,target);
     //    return ans;
 
+// SPACE OPTIMISATION
        bool ans = solveUsingTabSO(nums,target);
        return ans;
         
