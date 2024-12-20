@@ -58,6 +58,7 @@ public:
           // step 2: base case dekho , no need alll are initialised to 0
 
           // step 3:iterative approach two for loop s
+          // Adjustments dp array mei bass kari thi     
           for(int curr = n-1;curr>=0;curr--){
             for(int prev = curr-1;prev>=-1 ; prev--){
               int include =0;
@@ -74,6 +75,31 @@ public:
             }
           }
         return dp[0][-1+1];
+    }
+    int solveUsingTabSO(vector<int>& nums){
+        int n = nums.size();
+       vector<int>currRow(n+1 , 0);
+       vector<int>nextRow(n+1 , 0);
+
+          
+          for(int curr = n-1;curr>=0;curr--){
+            for(int prev = curr-1;prev>=-1 ; prev--){
+              int include =0;
+              if(prev == -1 || nums[curr]>nums[prev]){
+              include = 1 + nextRow[curr +1];// we have done curr as for validindex
+            
+             }
+  
+         // excude 
+            int exclude = 0 + nextRow[prev +1];
+            int ans = max(include, exclude);
+             currRow[prev +1] =ans;
+   
+            }
+            //shifting 
+            nextRow = currRow; // upar ki taraf jaaa rrha na 
+          }
+        return currRow[0];
     }
    
 
@@ -94,7 +120,10 @@ public:
       
 
       // TABULATION 
-      int ans = solveUsingTab(nums);
+    //   int ans = solveUsingTab(nums);
+    //   return ans;
+
+      int ans = solveUsingTabSO(nums);
       return ans;
     }
 };
