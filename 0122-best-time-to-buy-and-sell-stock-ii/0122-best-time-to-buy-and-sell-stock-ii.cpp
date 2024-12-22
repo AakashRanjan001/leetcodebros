@@ -48,9 +48,9 @@ public:
             profit = max(buyProfit, skipProfit);
         } else {
             // Option 1: Sell at the current price and move to the next day
-            int sellProfit = prices[i] + solve(prices, i + 1, true);
+            int sellProfit = prices[i] + solveUsingMem(prices, i + 1, true,dp);
             // Option 2: Skip selling and move to the next day
-            int skipProfit = solve(prices, i + 1, false);
+            int skipProfit = solveUsingMem(prices, i + 1, false,dp);
             // Take the maximum of the two
             profit = max(sellProfit, skipProfit);
         }
@@ -67,7 +67,7 @@ public:
        int n = prices.size();
       // step 1: create a dp array 
       // yaha index aur buy dono change ho rge hence 2D array
-        vector<vector<int>>dp(n+1,vector<int>(n , -1));
+        vector<vector<int>>dp(n+1,vector<int>(2 , -1));
         int ans = solveUsingMem(prices,0,true,dp);
         return ans;
 
