@@ -70,28 +70,28 @@ public:
           //step 3: iterative approach where two for loops lagenge 
           // in mem = > i = 0--->n-1
                     // buy = {true,false};// from 0-->1
-       for(int i=n-1;i>=0;i--){
+       for(int i1=n-1;i1>=0;i1--){
          for(int buy = 0;buy<=1;buy++){
            int profit = 0;
        
         if (buy) {
           
-            int buyProfit = -prices[i] + dp[i + 1][0];
+            int buyProfit = -prices[i1] + dp[i1 + 1][0];
            
-            int skipProfit = dp[i + 1][1];
+            int skipProfit = dp[i1 + 1][1];
          
             profit = max(buyProfit, skipProfit);
         } else {
           
-            int sellProfit = prices[i] + dp[i + 1][1];
+            int sellProfit = prices[i1] + dp[i1 + 1][1];
        
-            int skipProfit = dp[i + 1][0];
+            int skipProfit = dp[i1 + 1][0];
            
             profit = max(sellProfit, skipProfit);
         }
 
         int ans = profit;
-        dp[i][buy] = ans;
+        dp[i1][buy] = ans;
       
          }
        }
