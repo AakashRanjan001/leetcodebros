@@ -75,19 +75,22 @@ public:
            int profit = 0;
        
         if (buy) {
-          
+          if(i1+1>=0){
             int buyProfit = -prices[i1] + dp[i1 + 1][0];
            
             int skipProfit = dp[i1 + 1][1];
-         
-            profit = max(buyProfit, skipProfit);
-        } else {
           
+            profit = max(buyProfit, skipProfit);
+          }
+        } else {
+          if(i1+1>=0){
             int sellProfit = prices[i1] + dp[i1 + 1][1];
        
             int skipProfit = dp[i1 + 1][0];
+          
            
             profit = max(sellProfit, skipProfit);
+          }
         }
 
         int ans = profit;
