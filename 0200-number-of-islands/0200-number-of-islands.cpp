@@ -15,7 +15,7 @@ public:
 
               // now after defining the coordinates i can move in every directions four ways
               int dx[] = {-1,0,1,0};
-              int dy[] ={0,1,0,-1};
+              int dy[] ={0,1,0,-1}; // ye ek naya tareeeka seekha maine 
 
               for(int i=0;i<4;i++){
                   int newX = x + dx[i];
@@ -34,14 +34,13 @@ public:
     int numIslands(vector<vector<char>>& grid) {
         // hame bfs karna hai na 
         map<pair<int,int>,bool>visited;
-      
 
         int cnt =0;
         for(int row =0;row<grid.size();row++){
             int n = grid[row].size();
-             for(int col = 0;col<n;col++){
+             for(int col = 0;col<n;col++){ // YAHA MAINE GALTI KI THI
                  if(!visited[{row,col}] && grid[row][col] == '1'){
-                     bfs(visited,row,col,grid);
+                     bfs(visited,row,col,grid); // hamm call tabhi karenge jab grid[row][col] == 1 hoga 
                      cnt++;
                  }
              }
