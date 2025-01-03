@@ -1,6 +1,7 @@
 class Solution {
 public:
     void dfs( unordered_map<int,bool> &vis,int src ,vector<vector<int>>& isConnected ){
+        // cout<<"Received a call for src"<< src << endl;
         vis[src] = true;
         //row -->src
         //col --> we will use a loop
@@ -20,6 +21,7 @@ public:
         int n = isConnected.size();
         for(int i=0;i<n;i++){
             if(!visited[i]){
+                // cout<<"Calling for the src "<< i<<endl;
                  dfs(visited,i,isConnected);
                  cnt++;
             }
