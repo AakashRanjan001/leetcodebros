@@ -10,7 +10,7 @@ public:
         int maxlen =0;
 
         while(j<n){
-             //calculation 
+             //calculation  // hame o0ne ka use hi  nhi hai hame zeroes se deal karni hai 
              if(nums[j] == 0)zeroes++;
 
              while(zeroes > k){
