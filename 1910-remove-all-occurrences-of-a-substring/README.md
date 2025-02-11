@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/remove-all-occurrences-of-a-substring/">1910. Remove All Occurrences of a Substring</a></h2><h3>Medium</h3><hr><div><p>Given two strings <code>s</code> and <code>part</code>, perform the following operation on <code>s</code> until <strong>all</strong> occurrences of the substring <code>part</code> are removed:</p>
+<h2><a href="https://leetcode.com/problems/remove-all-occurrences-of-a-substring/?envType=daily-question&envId=2025-02-11">1910. Remove All Occurrences of a Substring</a></h2><h3>Medium</h3><hr><p>Given two strings <code>s</code> and <code>part</code>, perform the following operation on <code>s</code> until <strong>all</strong> occurrences of the substring <code>part</code> are removed:</p>
 
 <ul>
 	<li>Find the <strong>leftmost</strong> occurrence of the substring <code>part</code> and <strong>remove</strong> it from <code>s</code>.</li>
@@ -11,25 +11,27 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
-<pre><strong>Input:</strong> s = "daabcbaabcbc", part = "abc"
-<strong>Output:</strong> "dab"
+<pre>
+<strong>Input:</strong> s = &quot;daabcbaabcbc&quot;, part = &quot;abc&quot;
+<strong>Output:</strong> &quot;dab&quot;
 <strong>Explanation</strong>: The following operations are done:
-- s = "da<strong><u>abc</u></strong>baabcbc", remove "abc" starting at index 2, so s = "dabaabcbc".
-- s = "daba<strong><u>abc</u></strong>bc", remove "abc" starting at index 4, so s = "dababc".
-- s = "dab<strong><u>abc</u></strong>", remove "abc" starting at index 3, so s = "dab".
-Now s has no occurrences of "abc".
+- s = &quot;da<strong><u>abc</u></strong>baabcbc&quot;, remove &quot;abc&quot; starting at index 2, so s = &quot;dabaabcbc&quot;.
+- s = &quot;daba<strong><u>abc</u></strong>bc&quot;, remove &quot;abc&quot; starting at index 4, so s = &quot;dababc&quot;.
+- s = &quot;dab<strong><u>abc</u></strong>&quot;, remove &quot;abc&quot; starting at index 3, so s = &quot;dab&quot;.
+Now s has no occurrences of &quot;abc&quot;.
 </pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre><strong>Input:</strong> s = "axxxxyyyyb", part = "xy"
-<strong>Output:</strong> "ab"
+<pre>
+<strong>Input:</strong> s = &quot;axxxxyyyyb&quot;, part = &quot;xy&quot;
+<strong>Output:</strong> &quot;ab&quot;
 <strong>Explanation</strong>: The following operations are done:
-- s = "axxx<strong><u>xy</u></strong>yyyb", remove "xy" starting at index 4 so s = "axxxyyyb".
-- s = "axx<strong><u>xy</u></strong>yyb", remove "xy" starting at index 3 so s = "axxyyb".
-- s = "ax<strong><u>xy</u></strong>yb", remove "xy" starting at index 2 so s = "axyb".
-- s = "a<strong><u>xy</u></strong>b", remove "xy" starting at index 1 so s = "ab".
-Now s has no occurrences of "xy".
+- s = &quot;axxx<strong><u>xy</u></strong>yyyb&quot;, remove &quot;xy&quot; starting at index 4 so s = &quot;axxxyyyb&quot;.
+- s = &quot;axx<strong><u>xy</u></strong>yyb&quot;, remove &quot;xy&quot; starting at index 3 so s = &quot;axxyyb&quot;.
+- s = &quot;ax<strong><u>xy</u></strong>yb&quot;, remove &quot;xy&quot; starting at index 2 so s = &quot;axyb&quot;.
+- s = &quot;a<strong><u>xy</u></strong>b&quot;, remove &quot;xy&quot; starting at index 1 so s = &quot;ab&quot;.
+Now s has no occurrences of &quot;xy&quot;.
 </pre>
 
 <p>&nbsp;</p>
@@ -40,4 +42,3 @@ Now s has no occurrences of "xy".
 	<li><code>1 &lt;= part.length &lt;= 1000</code></li>
 	<li><code>s</code>​​​​​​ and <code>part</code> consists of lowercase English letters.</li>
 </ul>
-</div>
