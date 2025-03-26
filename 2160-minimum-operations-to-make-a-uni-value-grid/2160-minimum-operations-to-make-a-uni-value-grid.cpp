@@ -13,6 +13,7 @@ public:
           sort(temp.begin(),temp.end());
 
           // for the case of -1 
+          //saare convertible hone chahiye isi kaaran ye kiya to check for -1
           for(auto i:temp){
              if(abs(i-temp[0])%x !=0){
                  return -1;
