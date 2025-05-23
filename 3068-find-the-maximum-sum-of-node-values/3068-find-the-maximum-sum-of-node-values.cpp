@@ -42,7 +42,7 @@ public:
         // return sum;
         ll sum =0;
         ll countofXored = 0; // this is teh count of nodes how many are xored
-        ll minNuksaan = INT_MAX;
+        ll minNuksaan = INT_MAX;     // O(N) ka solution hai 
 
         for(ll num:nums){
               
