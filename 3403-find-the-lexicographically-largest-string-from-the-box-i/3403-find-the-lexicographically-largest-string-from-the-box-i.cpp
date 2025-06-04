@@ -6,7 +6,7 @@ public:
         if(numFriends == 1)return word;
         string res = "";
         int len = n - numFriends +1 ;
-        for(int i=0;i<len;i++){
+        for(int i=0;i<n;i++){
              string str = word.substr(i,len);
              res = max(res,str);
         }
