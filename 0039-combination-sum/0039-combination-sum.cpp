@@ -31,7 +31,7 @@
 
 class Solution {
 public:
-    void func(int ind, vector<int> ds, int varsum, vector<int> candidates, int target, vector<vector<int>>& ans) {
+    void func(int ind, vector<int> &ds, int varsum, vector<int> &candidates, int target, vector<vector<int>>& ans) {
         if (ind >= candidates.size()) {
             if (varsum == target) {
                 ans.push_back(ds);
