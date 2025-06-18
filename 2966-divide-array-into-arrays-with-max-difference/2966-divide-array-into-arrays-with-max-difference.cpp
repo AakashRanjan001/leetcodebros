@@ -1,18 +1,20 @@
-
 class Solution {
 public:
     vector<vector<int>> divideArray(vector<int>& nums, int k) {
-        vector<vector<int>>Soln;
+        int n = nums.size();
         sort(nums.begin(),nums.end());
+        vector<vector<int>>v;
         
-        if(nums.size()%3!=0)return {};
-        
-        for(int i =0;i<nums.size();i+=3){ 
-            if(abs(nums[i+2]-nums[i])<=k){
-                Soln.push_back({nums[i],nums[i+1],nums[i+2]});
-            }
-            else return {};
-        }
-        return Soln;
+if(nums.size()%3!=0)
+   return {};
+     
+            
+        for(int i=0 ;i<n;i=i+3){
+            if(nums[i+2]-nums[i]<=k){
+                v.push_back({nums[i],nums[i+1],nums[i+2]});
+                            }
+            else return{};
+                            }
+                            return v;
     }
 };
