@@ -4,7 +4,6 @@ public:
          
          int first = -1;
          int last = -1;
-         vector<int>ans;
 
          // in O(N) solution
          for(int i=0;i<nums.size();i++){
@@ -13,11 +12,6 @@ public:
                  last = i;
             }
          }
-         ans.push_back(first);
-         ans.push_back(last);
-         return ans;
-
-
-
+           return {first,last};
     }
 };
