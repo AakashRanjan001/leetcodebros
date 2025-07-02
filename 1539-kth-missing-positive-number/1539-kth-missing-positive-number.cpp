@@ -20,11 +20,25 @@ public:
         // }
         // return maxi +(k-cnt);
 
-        for(int i=0;i<arr.size();i++){
-             if(arr[i]<=k)k++;
-             else break;
-        }
-        return k;
+        //METHOD 2 ------> BRUTE FORCe
+
+        // for(int i=0;i<arr.size();i++){
+        //      if(arr[i]<=k)k++;
+        //      else break;
+        // }
+        // return k;
+
+
+  int l =0;
+  int h = arr.size()-1;
+
+  while(l<=h){
+     int mid = l+(h-l)/2;
+     int missing = arr[mid] - (mid+1);
+     if(missing<k)l = mid+1;
+     else h = mid-1;
+  }
+ return h+1+k;
        
     }
 };
