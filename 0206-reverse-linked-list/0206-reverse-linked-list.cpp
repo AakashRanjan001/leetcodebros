@@ -11,14 +11,17 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode* cur=head;
-        ListNode* prev=nullptr;
-        while(cur){
-            ListNode* nxt = cur->next;
-            cur->next = prev;
-            prev = cur;
-            cur = nxt;
-        }
-        return prev;
+         // matlba aage ka linking karne ke liye data store karna padega 
+         ListNode* prev = NULL;
+         ListNode* curr = head;
+
+         while(curr!=NULL){
+             ListNode* temp = curr->next;
+             curr->next = prev;
+             prev = curr;
+             curr = temp;
+         }
+         return prev;
+
     }
 };
