@@ -12,20 +12,22 @@ class Solution {
 public:
     ListNode* sortList(ListNode* head) {
 
-        //this has to be converted into array
-        vector<int>arr;
-        ListNode* temp = head;
-        ListNode* temp2 =head;
-        while(temp){
-            arr.push_back(temp->val);
-            temp = temp ->next;
-        }
-        sort(arr.begin(),arr.end());
-        //now again converting the elements of teh array into List
-        for(int i=0;i<arr.size();i++){
-            temp2->val = arr[i];
-            temp2 = temp2->next;
-        }
-        return head;
+          if (head == nullptr || head->next == nullptr) return head;
+         ListNode* temp = head;
+         vector<int>curr;
+         while(temp!=NULL){
+             curr.push_back(temp->val);
+             temp = temp->next;
+         }
+         sort(curr.begin(),curr.end());
+
+         ListNode* ans = new ListNode(curr[0]);
+         ListNode* tail = ans;
+         for(int i=1;i<curr.size();i++){
+              tail->next = new ListNode(curr[i]);
+              tail = tail->next;
+
+         }
+         return ans;
     }
 };
