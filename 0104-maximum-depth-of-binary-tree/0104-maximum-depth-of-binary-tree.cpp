@@ -10,16 +10,19 @@
  * };
  */
 class Solution {
-public:
+public: 
+    int maxHeight(TreeNode* temp){
+         if(temp == NULL)return 0;
+         
+         int leftheight = maxHeight(temp->left);
+         int rightheight = maxHeight(temp->right);
 
+         return max(leftheight,rightheight) +1 ;
+    }
     int maxDepth(TreeNode* root) {
-      if(root ==NULL){
-        return 0;
-      }
-
-        int leftheight = maxDepth(root->left);
-        int rightheight = maxDepth(root->right);
-        int ans = max(leftheight,rightheight)+1;
-        return ans;
+        TreeNode* temp = root;
+         int height = maxHeight(temp);
+         return height;
+         
     }
 };
