@@ -1,53 +1,68 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
+// /**
+//  * Definition for a binary tree node.
+//  * struct TreeNode {
+//  *     int val;
+//  *     TreeNode *left;
+//  *     TreeNode *right;
+//  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+//  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+//  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+//  * };
+//  */
+// class Solution {
+// public:
+//     TreeNode* build(vector<int>& inorder,int instart,int inend ,vector<int>& postorder, int poststart, int postend,  map<int,int>&mp ){
+           
+//            if(instart>inend || poststart>postend)return NULL;
+
+//            TreeNode* node = new TreeNode(postorder[postend]);
+//            int inroot = mp[node->val];
+//            int numsleft = inroot - instart;
+//            node->left = build(inorder, instart , inroot-1, postorder, poststart,poststart + numsleft,mp);
+//            node->right = build(inorder, inroot+1 , inend, postorder, poststart+numsleft+1,postend,mp);
+//            return node;
+//     }
+//     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+//          if(inorder.size()!=postorder.size())return NULL;
+
+//          //hash the value for the inorder
+//          map<int,int>mp;
+//          for(int i=0;i<inorder.size();i++){
+//              mp[inorder[i]] = i;
+//          }
+//          TreeNode* root = build(inorder,0,inorder.size()-1, postorder,0,postorder.size()-1,mp);
+//          return root;
+//     }
+// };
+
 class Solution {
 public:
-    int findPos( int element , vector<int>&inorder , int n){
-        for(int i=0;i<n;i++){
-            if(element == inorder[i]){
-                return i;
-            }
-        }
-        return -1;
+    TreeNode* build(vector<int>& inorder, int instart, int inend,
+                    vector<int>& postorder, int poststart, int postend,
+                    map<int,int>& mp) {
+        if (instart > inend || poststart > postend) return NULL;
+
+        TreeNode* node = new TreeNode(postorder[postend]); // root from postorder
+        int inroot = mp[node->val];
+        int numsleft = inroot - instart;
+
+        node->left = build(inorder, instart, inroot - 1,
+                           postorder, poststart, poststart + numsleft - 1, mp);
+
+        node->right = build(inorder, inroot + 1, inend,
+                            postorder, poststart + numsleft, postend - 1, mp);
+
+        return node;
     }
-    TreeNode* func(vector<int>& inorder, vector<int>& postorder , int n , int &postindex, int instart , int inend){
-        //base case 
-         if(postindex<0 || instart>inend){
-            return NULL;
-         }
-           // pehele element nikal lo from postorderf
-          int element = postorder[postindex];
-          postindex--;
 
-     // abb uss element ka Node create kar do 
-    TreeNode* root = new TreeNode(element);
-
-    //given element ko inorder wale mei doondhna padega 
-    int pos = findPos(element , inorder, n);
-
-    // right ka call
-    root->right =  func(inorder, postorder, n , postindex, pos+1, inend);
-   root->left =  func(inorder, postorder, n , postindex, instart, pos-1);
-
-    return root;
-    }
-    
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-        int n = postorder.size();
-        int postindex = n-1;
-        int instart = 0;
-        int inend = n-1;
-     
-        return func(inorder, postorder, n, postindex, instart, inend);
+        if (inorder.size() != postorder.size()) return NULL;
 
+        map<int,int> mp;
+        for (int i = 0; i < inorder.size(); i++) {
+            mp[inorder[i]] = i;
+        }
+        return build(inorder, 0, inorder.size() - 1,
+                     postorder, 0, postorder.size() - 1, mp);
     }
 };
