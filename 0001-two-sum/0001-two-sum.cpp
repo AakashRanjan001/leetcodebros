@@ -26,6 +26,22 @@ public:
             mp[nums[i]] = i;
         }
         return {};
+
+        // appraoch 3:
+        //  int n = nums.size();
+        //  sort(nums.begin(),nums.end());
+        //  int i=0,j=n-1;
+
+        //  while(i<j){
+        //      if(nums[i] + nums[j] == target)return {i,j};
+        //      else if(nums[i] + nums[j] < target){
+        //           i++;
+        //      }
+        //      else{
+        //          j--;
+        //      }
+        //  }
+        //  return {};
  
     }
 };
