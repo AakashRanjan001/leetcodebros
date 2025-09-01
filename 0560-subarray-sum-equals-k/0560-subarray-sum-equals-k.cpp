@@ -10,10 +10,39 @@ public:
 
                  if(sum == k){
                      cnt++;
-                     break;
+                   
                  }
              }
          }
          return cnt;
+
+      // prefix sum  + hashing 
+    //   int n = nums.size();
+    //   map<long long,int>prefsum;
+    //   int sum =0;
+    //   for(int i=0;i<n;i++){
+    //      sum+=nums[i];
+
+    //      if(sum == k){
+    //          maxlen = max(maxlen , i+1);
+    //      }
+
+    //      int rem = sum - k;
+    //      if(prefsum.find(rem)!=pref.end()){
+    //          int len = i - prefsum[rem];
+    //          maxlen  = max(maxlen, len);
+    //      }
+
+    //      if(prefsum.find(sum) == prefsum.end()){
+    //          prefsum[sum] = i;
+    //      }
+    //   }
+
+
+// SLIDING WIMDOW
+
+
+
+
     }
 };
