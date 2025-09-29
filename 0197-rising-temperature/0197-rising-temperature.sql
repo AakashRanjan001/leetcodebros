@@ -14,6 +14,13 @@
 --      Today.recordDate - Yesterday.recordDate = 1)
 
 
-SELECT w1.id
-FROM Weather w1, Weather w2
-WHERE DATEDIFF(w1.recordDate, w2.recordDate) = 1 AND w1.temperature > w2.temperature;
+SELECT currentDay.id
+ FROM Weather as CurrentDay
+ where EXISTS (
+         SELECT * 
+         FROM Weather as yesterday
+         WHERE currentDay.temperature > yesterday.temperature
+         AND currentDay.recordDate = yesterday.recordDate +INTERVAL 1 DAY 
+ );
+
+
