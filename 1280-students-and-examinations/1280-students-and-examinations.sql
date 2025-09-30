@@ -14,4 +14,3 @@ AND su.subject_name = e.subject_name
 GROUP BY s.student_name,s.student_id ,su.subject_name
 ORDER BY s.student_id,su.subject_name
 
-
