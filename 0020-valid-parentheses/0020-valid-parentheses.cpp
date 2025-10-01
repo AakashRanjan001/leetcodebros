@@ -1,53 +1,28 @@
 class Solution {
 public:
     bool isValid(string s) {
-        stack<char>st;
-    
-    for(int i=0;i<s.size();i++){
-        char ch = s[i];
+         int n = s.size();
+         stack<char>st;
+         for(int i=0;i<n;i++){
+             char ch = s[i];
 
-      //openeing bracket 
-      if(ch == '(' || ch == '{' || ch == '['){
-         st.push(ch);     
-      }
-      
+             if(ch == '(' || ch == '{' || ch == '['){
+                 st.push(ch);
+             }
+             else{
+                 if(st.empty())return false;// matlabsabse pehle closing bracket aa gya
+                 if(!st.empty()){
+                     if(ch== ')' && st.top() == '(')st.pop();
+                     else if(ch== '}' && st.top() == '{')st.pop();
+                     else if(ch== ']' && st.top() == '[')st.pop();
+                 }
+                 else{
+                     return false;// brackets not matching
+                 }
+             }
+         }
 
-
-      else{  //closing bracket
-      
-           if(st.empty()){
-             //closing bracket hai but stack empty hai matlab opening bracket nhi hai stack mei
-             return false;
-           }
-           
-           if(!st.empty()){  //agar stack empty nhi hai phir apon aage check kiye
-            char topelement = st.top();//stack empty nhi hai
-            if(topelement == '(' && ch ==')'){
-                 //matching mil gy
-                 st.pop();
-           }
-           else if(topelement == '{' && ch =='}'){
-                 //matching mil gy
-                 st.pop();
-           }
-           else if(topelement == '[' && ch ==']'){
-                 //matching mil gy
-                 st.pop();
-           }
-           else{ //brackets not matching
-            return false;
-           }
-     }
-
- }
-
-    }
-    if(st.empty()){  //loop ke bahar aa gey matlab stack empty ho gya sab pop ho gya sabka pair mil gya 
-      return true;
-    }
-    else{
-        return false;
-    }
-        
+         if(st.empty())return true;
+         return false;
     }
 };
