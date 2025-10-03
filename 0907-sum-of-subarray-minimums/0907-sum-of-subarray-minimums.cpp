@@ -1,28 +1,66 @@
-
-
-class Solution {
+const int mod = 1e9 + 7;
+ class Solution {
 public:
+    vector<int>findnse(vector<int>& arr){
+        int n = arr.size();
+         vector<int>nse(n);
+         stack<int>st; // we are pushing indexes into the stack 
+
+         for(int i=n-1;i>=0;i--){
+              while(!st.empty() &&  arr[st.top()] >= arr[i]){
+                 st.pop();
+              }
+              if(st.empty()){
+                 nse[i] = n;
+              }
+              else{
+                 nse[i] = st.top();
+              }
+              st.push(i);
+         }
+         return nse;
+    }
+    vector<int>findpsee(vector<int>& arr){
+        int n = arr.size();
+         vector<int>psee(n);
+         stack<int>st;
+
+
+         for(int i=0;i<n;i++){
+             while(!st.empty() && arr[st.top()]>arr[i]){
+                 st.pop();
+             }
+             psee[i] = st.empty() ? -1 : st.top();
+             st.push(i);
+         }
+         return psee;
+    }
     int sumSubarrayMins(vector<int>& arr) {
-        const int MOD = 1000000007;
-        stack<int> st;
-        long sumOfMinimums = 0;
+        // int n = arr.size();
+        // int mini = INT_MAX;
+        // long long sum =0;
+        // for(int i=0;i<n;i++){
+        //      mini = INT_MAX;
+        //      for(int j=i;j<n;j++){
+        //          mini =min(arr[j],mini);
+        //          sum+=mini;
+        //      }
+        // }
+        // return sum % 1000000007;
 
-        for (int i = 0; i <= arr.size(); i++) {
-            while (!st.empty() && (i == arr.size() || arr[st.top()] >= arr[i])) {
-                int mid = st.top();
-                st.pop();
-                int leftBoundary = st.empty() ? -1 : st.top();
-                int rightBoundary = i;
+        //for optimisation
+        //store the next smaller element 
+        int n = arr.size();
+        vector<int>nse = findnse(arr);
+        vector<int>psee = findpsee(arr);
 
-                long count = (mid - leftBoundary) * (rightBoundary - mid) % MOD;
+        int total = 0;
+        for(int i=0;i<n;i++){
+             int leftelements = i - psee[i];
+             int rightelements = nse[i] - i;
 
-                sumOfMinimums += (count * arr[mid]) % MOD;
-                sumOfMinimums %= MOD;
-            }
-            st.push(i);
+             total = (total + (1LL * leftelements * rightelements * arr[i]))% mod;
         }
-
-        return static_cast<int>(sumOfMinimums);
+        return total;
     }
 };
-
