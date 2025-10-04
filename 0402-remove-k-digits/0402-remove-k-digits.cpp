@@ -1,30 +1,85 @@
+// class Solution {
+// public:
+//     string removeKdigits(string num, int k) {
+//         int n = num.size();
+//         stack<char>st;
+
+//         for(int i=0;i<n;i++){
+//              while(!st.empty() && k>0 && st.top()-'0' > num[i] - '0'){
+//                  st.pop();
+//                  k--;
+//              }
+//              st.push(num[i]);
+//         }
+
+//         //edge case 1 aftr traversing whole string , still k!=0
+//         while(k>0 && !st.empty()){
+//              st.pop();
+//              k--;
+//         }
+
+//         //edge case 2 
+//         if(st.empty())return "0";
+
+//         string res = "";
+//         while(!st.empty()){
+//              res+=st.top();
+//              st.pop();
+//         }
+
+//         //edge case 3 : leading zeroes 
+//         while(res.size()!=0 && res.back() == '0'){
+//              res.pop_back() ;// jab tak res ke peeche zeroes lage hue hai tab tak delete karte jao
+//         }
+//         reverse(res.begin(),res.end());
+//         // agar saara hi string 0 hai tab toh sab delete karna hoga
+//         if(st.empty())return "0";
+//         return res;
+        
+
+//     }
+// };
+
 class Solution {
 public:
     string removeKdigits(string num, int k) {
-        // Use a string to store the result directly
-        string result;
+        int n = num.size();
+        stack<char>st;
 
-        // Iterate through each character (digit) in num
-        for (char digit : num) {
-            // While the result is not empty, k > 0, and the last character in result
-            // is greater than the current digit, remove the last character from result
-            while (!result.empty() && k > 0 && result.back() > digit) {
-                result.pop_back();
-                k--;
-            }
-            // Append the current digit to the result if it's not a leading zero or the result is not empty
-            if (!result.empty() || digit != '0') {
-                result += digit;
-            }
+        for(int i=0;i<n;i++){
+             while(!st.empty() && k>0 && st.top()-'0' > num[i]-'0'){
+                 st.pop();
+                 k--;
+             }
+             st.push(num[i]);
         }
 
-        // If there are remaining removals, remove the required amount from the end
-        while (k > 0 && !result.empty()) {
-            result.pop_back();
+        // edge case 1: after traversing whole string, still k!=0
+        while(k>0 && !st.empty()){
+            st.pop();
             k--;
         }
 
-        // Return the result, if empty return "0"
-        return result.empty() ? "0" : result;
+        // edge case 2 
+        if(st.empty()) return "0";
+
+        string res = "";
+        while(!st.empty()){
+             res += st.top();
+             st.pop();
+        }
+
+        reverse(res.begin(), res.end());
+
+        // edge case 3: remove leading zeroes 
+        int i = 0;
+        while(i < res.size() && res[i] == '0'){
+            i++;
+        }
+        res = res.substr(i);
+
+        // agar saara hi string 0 hai tab toh sab delete karna hoga
+        if(res.empty()) return "0";
+        return res;
     }
 };
