@@ -11,7 +11,7 @@ public:
              int ind = lower_bound(nums.begin()+j+1,nums.end(),sum) - nums.begin();
              cnt+=(ind-j-1);
          }
-      }
+      }  // the time complexity is taken to be the O(n^2logn)
       return cnt;
         
     }
