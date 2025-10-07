@@ -1,47 +1,55 @@
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-        //  int n = nums.size();
-        //  vector<int>ans;
-        //  for(int i=0;i<n;i++){
-        //     int maxi = INT_MIN;
-        //      for(int j=i;j<n;j++){
-        //          maxi = max(maxi,nums[j]);
-
-        //          if(j-i+1 == k){
-        //              ans.push_back(maxi);
-        //              break;
-        //          }
-        //      }
+        // ye sliding window plus queue ka question hao 
+         //brute force
+        //  int maxi = INT_MIN; 
+        //  vector<int>res;
+        //  for(int i=0;i<=nums.size() - k;i++){
+        //     maxi = INT_MIN;
+        //     for(int j=i;j<i+k;j++){
+        //           maxi = max(maxi,nums[j]);
+        //     }
+        //     res.push_back(maxi);
         //  }
-        //  return ans;
+        //  return res;
 
-
-        // by the use of deque but why we are using deque i have to understand
+       //optimal is sliding and queue
+       deque<int>q;
        int n = nums.size();
-       deque<int>dq;
+       int maxi = INT_MIN;
+       int i=0;
+       int j=0;
        vector<int>res;
 
-       for(int i=0;i<n;i++){
-          //step 1: jo bhi i-k se kam ke indexes hai deque mei usko valid window mei consider nhui karenge
 
-          while(!dq.empty() && dq.front()<=i-k){
-              dq.pop_front();
-          }
+       while(j<n){
+          //calculation to find out the maxi 
+            while( !q.empty() && q.back()<nums[j] ){
+                 q.pop_back();
+            }
+            q.push_back(nums[j]);
 
-          // step 2: agar nums[i] bada hai toh jo chote elemets hai usko remove karte chalo 
-           while(!dq.empty() && nums[i] > nums[dq.back()]){
-              dq.pop_back();
-           }
+            if(j-i+1 < k){
+                 j++;
+            }
 
-           // step 3: deque mei answer daalo 
-        dq.push_back(i);
-           // step 4: res mei answer store karo har ek window ka 
-           if(i>=k-1){ // agar valid window mila hai tab hi ye karna hai 
-               res.push_back(nums[dq.front()]);
-           }
-         
+            else if(j-i+1 == k){
+                 //ans nikalo from calculationa and slide the window
+                 res.push_back(q.front());
+                 //slide 
+                 if(nums[i] == q.front()){
+                     q.pop_front();
+                    
+                 }
+                  i++;
+                  j++;
+                   
+            }
+           
        }
        return res;
+
+
     }
 };
