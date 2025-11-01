@@ -1,8 +1,8 @@
 # Write your MySQL query statement below
- SELECT (
- SELECT Distinct salary 
- FROM Employee
- ORDER BY salary DESC
- LIMIT 1 OFFSET 1
- ) as SecondHighestSalary
- 
+-- can be solved using subqueis 
+-- can be solved using functions that is LIMIT OFFSET
+ -- can be solved using JOIN S
+
+SELECT MAX(e1.salary) as SecondHighestSalary
+ FROM Employee as e1 INNER JOIN Employee as e2
+ ON e1.salary<e2.salary;
