@@ -20,8 +20,8 @@ public:
           int zeroes = NumStrs[i].first;
           int ones = NumStrs[i].second;
           int include =0,exclude =0;
-       //include/exclude pattern
-         if(m - zeroes>=0 && n - ones>=0){
+       //include/exclude pattern 
+         if(m - zeroes>=0 && n - ones>=0){ // YAHA DHYAN DENA !!!!
              include = 1 + solveUsingRec(NumStrs,i+1,m-zeroes,n-ones);
          }
          exclude = 0 + solveUsingRec(NumStrs,i+1,m,n);
