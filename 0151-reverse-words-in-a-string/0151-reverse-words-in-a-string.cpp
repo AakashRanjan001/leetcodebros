@@ -1,63 +1,43 @@
-// class Solution {
-// public:
-//     string reverseWords(string s) {
-//         int n = s.size();
-//         string temp = "";
-//         vector<string>arr;
-//         for(int i=0;i<n;i++){
-//             temp+=s[i];
-//              if(s[i] == ' '){
-//                 arr.push_back(temp); 
-//                 temp.clear();
-//              }
-//         }
-//          if (!temp.empty()) arr.push_back(temp);
-//          int i=0;
-//          int j = arr.size()-1;
-//          while(i<j){
-//              swap(arr[i],arr[j]);
-//              i++;
-//              j--;
-//          }
-//         string ans = "";
-//         for(int k=0;k<(int)arr.size();k++){
-//              if(k>0)ans+=' ';
-//              ans+=arr[k];
-//         }
-//         return ans;
-
-//     }
-// };
 class Solution {
 public:
     string reverseWords(string s) {
-        int n = s.size();
-        vector<string> arr;
-        string temp = "";
+        // int n = s.size();
+        // // tareek 1 : using string stream which is used in tokenisation 
+        // stringstream ss(s);
+        // string tokenstored = "";
+        // string res = "";
 
-        for (int i = 0; i < n; i++) {
-            if (s[i] == ' ') {
-                if (!temp.empty()) {      // avoid pushing empty words
-                    arr.push_back(temp);
-                    temp.clear();
-                }
-            } else {
-                temp += s[i];
-            }
-        }
-        if (!temp.empty()) arr.push_back(temp); // push last word
+        // while(ss>>tokenstored){
+        //      res = tokenstored + ' ' + res;
+        // }
+        // return res.substr(0,res.size()-1);
 
-        int i = 0, j = (int)arr.size() - 1;
-        while (i < j) {
-            swap(arr[i], arr[j]);
-            i++; j--;
-        }
+        //tareeka 2 : using two pinter 
+        // i pointer check karega ki aage space hai ya character 
+        // l and r pointer jab ek word milevga tab apon uss word ko reverse karenge 
+    
+     int n = s.size();
+     int i=0;
+    reverse(s.begin(),s.end());
+     int l =0,r=0;
 
-        string ans = "";
-        for (int k = 0; k < (int)arr.size(); k++) {
-            if (k > 0) ans += ' ';
-            ans += arr[k];
-        }
-        return ans;
+     while(i<n){
+         while(i<n && s[i]!=' '){
+             s[r] = s[i];
+             r++;
+             i++;
+         }
+        if(l<r){
+         reverse(s.begin()+l, s.begin()+r);
+
+         s[r] = ' ';
+         r++;
+         l = r;
+     }
+      i++;
+
+     }
+     return s.substr(0,r-1);
+
     }
 };
